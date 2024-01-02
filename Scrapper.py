@@ -11,13 +11,16 @@ class Scrapper:
         return self.page
      
     def getPrice(self):
-        page = self.getPage()
-        beautifulsoup = BeautifulSoup(page._content, 'html.parser')
+        try:
+            page = self.getPage()
+            beautifulsoup = BeautifulSoup(page._content, 'html.parser')
 
-        # print(soup)
-        result = {}
-        result['price'] = float(beautifulsoup.find("span", {"class": "currprice"}).find("span",{"class": "Number"}).text)
-        return result
+            # print(soup)
+            result = {}
+            result['price'] = float(beautifulsoup.find("span", {"class": "currprice"}).find("span",{"class": "Number"}).text)
+            return result
+        except Exception as e:
+            return "Unable to Fetch"
         
 
 
